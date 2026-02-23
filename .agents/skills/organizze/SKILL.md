@@ -1,6 +1,6 @@
 ---
 name: organizze
-description: Access and manage the Organizze personal finance API. Use when working with Organizze to manage transactions, accounts, credit cards, invoices, categories, or budgets. Triggers on any request involving financial records, expenses, income, credit card invoices, or balance queries in Organizze.
+description: Access and manage the Organizze personal finance API. Use when working with the Organizze app to manage transactions, accounts, credit cards, invoices, categories, or budgets. Triggers on any request involving financial records, expenses, income, credit card invoices, or balance queries in Organizze.
 ---
 
 # Organizze API
