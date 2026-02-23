@@ -5,7 +5,7 @@ An [OpenClaw](https://openclaw.ai) / Claude Code skill for the [Organizze](https
 ## Install
 
 ```bash
-npx skills add tarcisiopgs/organizze-skill@organizze
+npx skills add tarcisiopgs/organizze-skill
 ```
 
 ## What it does
