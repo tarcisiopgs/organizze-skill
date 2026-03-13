@@ -29,8 +29,8 @@ BASE = 'https://api.organizze.com.br/rest/v2'
 - **Pagination**: `/transactions` and `/invoices` default to current month/year. Use `?start_date=YYYY-MM-DD&end_date=YYYY-MM-DD`. Dates are rounded to full months.
 - **Credit card transactions**: have `credit_card_id` set; bank account transactions have it as `null`.
 - **Transfers**: use `/transfers` endpoint, not `/transactions`. Creates two linked records (`oposite_transaction_id`).
-- **Category `kind`**: each category has a `kind` field — `"expenses"`, `"earnings"`, or `"none"`. This is the canonical way to distinguish expense vs income categories. Two categories can share the same name if they have different `kind` values (e.g., "Desenvolvimento" for expenses and for earnings).
-- **Archiving categories**: the API does **not** support archiving via `PUT`. Use `DELETE` with `replacement_id` to reassign transactions before removing the category.
+- **Category `kind`**: `expenses`, `earnings`, or `none` — use this to distinguish type, not the name. Full schema in `references/api_reference.md`.
+- **Archiving categories**: `PUT` does **not** support archiving. Use `DELETE` with `replacement_id` to reassign transactions first.
 
 ## Endpoint Map
 
