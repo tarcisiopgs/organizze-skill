@@ -78,10 +78,25 @@ DELETE /categories/{id} body: { replacement_id }
 `replacement_id` in DELETE: reassigns all transactions to that category before deleting.
 
 ```json
-{ "id": 1, "name": "Lazer", "color": "438b83", "parent_id": null }
+{
+  "id": 1,
+  "name": "Lazer",
+  "color": "438b83",
+  "parent_id": null,
+  "kind": "expenses",
+  "archived": false
+}
 ```
 
 `parent_id: null` = top-level. Sub-categories have a parent.
+
+**`kind` field** distinguishes category type:
+- `"expenses"` — despesa
+- `"earnings"` — receita/entrada
+- `"none"` — neutro (ex: Transferências, Pagamento de fatura)
+
+> ⚠️ The API does **not** support archiving categories via `PUT`. To archive, use DELETE with `replacement_id`.  
+> Categories with the same name can coexist if they have different `kind` values (e.g., two "Desenvolvimento" — one expenses, one earnings).
 
 ---
 
