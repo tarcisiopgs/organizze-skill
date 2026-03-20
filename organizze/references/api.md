@@ -134,7 +134,7 @@ DELETE /credit_cards/{id}
 ```
 GET /credit_cards/{id}/invoices
 GET /credit_cards/{id}/invoices/{invoice_id}
-GET /credit_cards/{id}/invoices/{invoice_id}/payments
+GET /credit_cards/{id}/invoices/{invoice_id}/payments   ← retorna objeto único (não array)
 ```
 
 ### Invoice list item
@@ -348,7 +348,7 @@ Creates two linked records — one debit, one credit. **Credit cards not accepte
 ```
 GET    /transfers
 GET    /transfers/{id}
-POST   /transfers   body: { debit_account_id, credit_account_id, amount_cents, date, paid, tags }
+POST   /transfers
 PUT    /transfers/{id}
 DELETE /transfers/{id}
 ```
@@ -366,7 +366,17 @@ DELETE /transfers/{id}
 }
 ```
 
-### Response (debit side)
+### PUT body
+
+```json
+{
+  "description": "Transferência ajustada",
+  "notes": "Ajuste manual",
+  "tags": [{"name": "revisado"}]
+}
+```
+
+### Response (debit side — POST and PUT)
 
 ```json
 {
@@ -397,6 +407,22 @@ DELETE /transfers/{id}
 ```
 
 `oposite_transaction_id: 11` is the credit side (positive amount in account 4).
+
+### DELETE response
+
+```json
+{
+  "id": 10,
+  "description": "Transferência",
+  "date": "2015-09-01",
+  "paid": true,
+  "amount_cents": -10000,
+  "account_id": 3,
+  "oposite_transaction_id": 11,
+  "oposite_account_id": 4,
+  "deleted": true
+}
+```
 
 ---
 
