@@ -1,6 +1,10 @@
 ---
 name: organizze
-description: Access and manage the Organizze personal finance API. Use when working with Organizze to manage transactions, accounts, credit cards, invoices, transfers, categories, or budgets. Triggers on any request involving financial records, expenses, income, installments, recurring transactions, credit card invoices, transfers, or balance queries in Organizze.
+description: >
+  Access and manage the Organizze personal finance API. Use when working with Organizze to manage
+  transactions, accounts, credit cards, invoices, transfers, categories, or budgets. Triggers on any
+  request involving financial records, expenses, income, installments, recurring transactions, credit
+  card invoices, transfers, or balance queries in Organizze.
 ---
 
 # Organizze API
@@ -46,7 +50,7 @@ BASE = 'https://api.organizze.com.br/rest/v2'
 | Transfers | `GET/POST /transfers`, `GET/PUT/DELETE /transfers/{id}` |
 | Users | `GET /users/{id}` |
 
-Full schemas and response examples: see `references/api_reference.md`.
+Full schemas and response examples: see `references/api.md`.
 
 ## Common Patterns
 
