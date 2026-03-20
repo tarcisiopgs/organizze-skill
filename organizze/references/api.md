@@ -82,21 +82,19 @@ DELETE /categories/{id} body: { replacement_id }
   "id": 1,
   "name": "Lazer",
   "color": "438b83",
-  "parent_id": null,
-  "kind": "expenses",
-  "archived": false
+  "parent_id": null
 }
 ```
 
 `parent_id: null` = top-level. Sub-categories have a parent.
 
-**`kind` field** distinguishes category type:
-- `"expenses"` — despesa
-- `"earnings"` — receita/entrada
-- `"none"` — neutro (ex: Transferências, Pagamento de fatura)
+> 📌 **Campos não documentados oficialmente, mas presentes na API real:**
+> - `kind` — tipo da categoria: `"expenses"`, `"earnings"`, `"none"` (neutro: transferências, pagamento de fatura)
+> - `archived` — boolean, indica se a categoria está arquivada
+>
+> Use `kind` para distinguir tipo de categoria, não o nome. Categorias com mesmo nome podem coexistir se tiverem `kind` diferentes.
 
-> ⚠️ The API does **not** support archiving categories via `PUT`. To archive, use DELETE with `replacement_id`.  
-> Categories with the same name can coexist if they have different `kind` values (e.g., two "Desenvolvimento" — one expenses, one earnings).
+> ⚠️ A API **não suporta** arquivamento de categorias via `PUT`. Para arquivar, use `DELETE` com `replacement_id` para reatribuir as transações antes.
 
 ---
 
@@ -185,7 +183,9 @@ GET /credit_cards/{id}/invoices/{invoice_id}/payments   ← retorna objeto únic
       "category_id": 21,
       "contact_id": null,
       "notes": "",
-      "attachments_count": 0
+      "attachments_count": 0,
+      "created_at": "2015-08-04T20:13:49-03:00",
+      "updated_at": "2015-08-04T20:14:04-03:00"
     },
     {
       "id": 12,
@@ -201,7 +201,9 @@ GET /credit_cards/{id}/invoices/{invoice_id}/payments   ← retorna objeto únic
       "category_id": 21,
       "contact_id": null,
       "notes": "",
-      "attachments_count": 0
+      "attachments_count": 0,
+      "created_at": "2015-07-01T10:52:06-03:00",
+      "updated_at": "2015-08-04T20:17:17-03:00"
     }
   ],
   "payments": [
@@ -357,14 +359,16 @@ DELETE /transfers/{id}
 
 ```json
 {
-  "debit_account_id": 3,
-  "credit_account_id": 4,
+  "credit_account_id": 3,
+  "debit_account_id": 4,
   "amount_cents": 10000,
   "date": "2015-09-01",
   "paid": true,
   "tags": [{"name": "ajuste"}]
 }
 ```
+
+> `credit_account_id` = conta de destino (recebe); `debit_account_id` = conta de origem (sai o dinheiro).
 
 ### PUT body
 
