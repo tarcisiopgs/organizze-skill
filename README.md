@@ -1,6 +1,6 @@
 # organizze-skill
 
-An agent skill for the [Organizze](https://organizze.com.br) personal finance API — compatible with any skills.sh-enabled assistant.
+An AI agent skill for the [Organizze](https://organizze.com.br) personal finance API.
 
 ## What it does
 
@@ -34,9 +34,7 @@ transfer R$500 from checking to savings
 
 ## Installation
 
-```bash
-claude install tarcisiopgs/organizze-skill
-```
+Install using any SKILL.md-compatible AI tool by pointing to this repository.
 
 ## API Coverage
 
