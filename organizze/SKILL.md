@@ -17,12 +17,19 @@ Basic auth with `User-Agent` header (**required** — returns 400 without it):
 import os, base64, urllib.request, json
 
 api_key = os.environ.get('ORGANIZZE_API_KEY', '')
-email = 'user@example.com'  # Organizze account email
+# ORGANIZZE_EMAIL may be defined in ~/.zshrc but not exported to the runtime env.
+# Try env first; fall back to reading ~/.zshrc directly.
+email = os.environ.get('ORGANIZZE_EMAIL', '')
+if not email:
+    import subprocess
+    email = subprocess.check_output(
+        "grep ORGANIZZE_EMAIL ~/.zshrc | cut -d'\"' -f2", shell=True
+    ).decode().strip()
 credentials = base64.b64encode(f'{email}:{api_key}'.encode()).decode()
 headers = {
     'Authorization': f'Basic {credentials}',
     'Content-Type': 'application/json',
-    'User-Agent': 'myapp/1.0'
+    'User-Agent': 'estagisaura/1.0'
 }
 BASE = 'https://api.organizze.com.br/rest/v2'
 ```
